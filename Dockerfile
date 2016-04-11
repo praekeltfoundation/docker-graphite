@@ -5,21 +5,18 @@ MAINTAINER Praekelt Foundation <dev@praekeltfoundation.org>
 
 ENV GRAPHITE_VERSION "0.9.15"
 RUN apt-get-install.sh libcairo2
-# Install graphite-web dependencies from https://github.com/graphite-project/graphite-web/blob/0.9.15/requirements.txt
+# Install graphite-web dependencies from http://graphite.readthedocs.org/en/0.9.15/install.html#dependencies
 # graphite-web as of version 0.9.15 doesn't set any `install_requires` in its
-# setup.py so we have to install these manually. Also, its requirements.txt
-# includes other dependencies we don't want such as Sphinx and Whisper from git
-# for some reason.
-# We also use Django>=1.8 instead of the recommended 1.4 as WhiteNoise requires
-# it and graphite-web seems alright with Django>=1.4.
-RUN pip install "Django>=1.8" \
-                "python-memcached==1.47" \
-                "txAMQP==0.4" \
-                "simplejson==2.1.6" \
-                "gunicorn" \
-                "pytz" \
-                "cairocffi" \
-                "whitenoise"
+# setup.py so we have to install these manually.
+# Use WhiteNoise to serve static files rather than Nginx -- it requires
+# Django>=1.8.
+RUN pip install cairocffi \
+                Django>=1.8 \
+                django-tagging>=0.3.1 \
+                gunicorn \
+                pytz \
+                txAMQP \
+                whitenoise
 RUN pip install "whisper==${GRAPHITE_VERSION}" \
                 "carbon==${GRAPHITE_VERSION}" \
                 "graphite-web==${GRAPHITE_VERSION}"
