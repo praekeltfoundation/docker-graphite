@@ -31,6 +31,8 @@ RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
     cp conf/carbon.conf.example conf/carbon.conf && \
     cp conf/storage-schemas.conf.example conf/storage-schemas.conf
 
+COPY ./local_settings.py /opt/graphite/webapp/graphite
+
 # Copy in supervisor configs
 COPY ./supervisor /etc/supervisor/conf.d
 
