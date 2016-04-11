@@ -23,15 +23,13 @@ RUN pip install "whisper==${GRAPHITE_VERSION}" \
 
 # Graphite installs into /opt somehow
 ENV GRAPHITE_ROOT "/opt/graphite"
-ENV PATH="$PATH:$GRAPHITE_ROOT/bin"
+ENV PATH "$PATH:$GRAPHITE_ROOT/bin"
+WORKDIR $GRAPHITE_ROOT
 
 # Set up basic config
-RUN cp /opt/graphite/conf/carbon.conf.example /opt/graphite/conf/carbon.conf && \
-    cp /opt/graphite/conf/storage-schemas.conf.example /opt/graphite/conf/storage-schemas.conf
-
-# The WSGI application definition is not provided in the 0.9.x series, pull in
-# from master branch: https://github.com/graphite-project/graphite-web/blob/01a1f6a8f4753a4f74356e801c0dcb16d7de33f5/webapp/graphite/wsgi.py
-COPY ./wsgi.py "$GRAPHITE_ROOT/webapp/graphite"
+RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
+    cp conf/carbon.conf.example conf/carbon.conf && \
+    cp conf/storage-schemas.conf.example conf/storage-schemas.conf
 
 # Copy in supervisor configs
 COPY ./supervisor /etc/supervisor/conf.d
