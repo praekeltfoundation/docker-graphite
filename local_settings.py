@@ -74,8 +74,6 @@ SECRET_KEY = os.environ.get('GRAPHITE_WEB_SECRET_KEY', 'UNSAFE_DEFAULT')
 #STORAGE_DIR = '/opt/graphite/storage'
 #CONTENT_DIR = '/opt/graphite/webapp/content'
 
-STATIC_ROOT = '/opt/graphite/webapp/content'
-
 # To further or fully customize the paths, modify the following. Note that the
 # default settings for each of these are relative to CONF_DIR and STORAGE_DIR
 #
@@ -233,6 +231,4 @@ else:
 #####################################
 # Uncomment the following line for direct access to Django settings such as
 # MIDDLEWARE_CLASSES or APPS
-STATIC_URL = '/content/'
-URL_PREFIX = ''
 #from graphite.app_settings import *

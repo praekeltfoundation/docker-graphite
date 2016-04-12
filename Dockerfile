@@ -10,16 +10,12 @@ RUN apt-get-install.sh libcairo2
 # setup.py so we have to install these manually.
 # http://graphite.readthedocs.org/en/0.9.15/install.html#dependencies
 # https://github.com/graphite-project/graphite-web/blob/0.9.15/requirements.txt
-#
-# Use WhiteNoise to serve static files rather than Nginx (and version < 3 for
-# compatibility with Django < 1.8).
 RUN pip install cairocffi \
                 Django==1.4 \
                 django-tagging==0.3.1 \
                 gunicorn \
                 pytz \
-                txAMQP \
-                "whitenoise<3.0.0,>=2.0.0"
+                txAMQP
 RUN pip install "whisper==${GRAPHITE_VERSION}" \
                 "carbon==${GRAPHITE_VERSION}" \
                 "graphite-web==${GRAPHITE_VERSION}"
