@@ -5,18 +5,21 @@ MAINTAINER Praekelt Foundation <dev@praekeltfoundation.org>
 
 ENV GRAPHITE_VERSION "0.9.15"
 RUN apt-get-install.sh libcairo2
-# Install graphite-web dependencies from http://graphite.readthedocs.org/en/0.9.15/install.html#dependencies
+# Install graphite-web dependencies
 # graphite-web as of version 0.9.15 doesn't set any `install_requires` in its
 # setup.py so we have to install these manually.
-# Use WhiteNoise to serve static files rather than Nginx -- it requires
-# Django>=1.8.
+# http://graphite.readthedocs.org/en/0.9.15/install.html#dependencies
+# https://github.com/graphite-project/graphite-web/blob/0.9.15/requirements.txt
+#
+# Use WhiteNoise to serve static files rather than Nginx (and version < 3 for
+# compatibility with Django < 1.8).
 RUN pip install cairocffi \
-                Django>=1.8 \
-                django-tagging>=0.3.1 \
+                Django==1.4 \
+                django-tagging==0.3.1 \
                 gunicorn \
                 pytz \
                 txAMQP \
-                whitenoise
+                "whitenoise<3.0.0,>=2.0.0"
 RUN pip install "whisper==${GRAPHITE_VERSION}" \
                 "carbon==${GRAPHITE_VERSION}" \
                 "graphite-web==${GRAPHITE_VERSION}"
@@ -40,3 +43,6 @@ COPY ./supervisor /etc/supervisor/conf.d
 
 EXPOSE 8000
 VOLUME /opt/graphite/storage
+
+COPY ./bootstrap.sh /scripts
+CMD ["bootstrap.sh"]
