@@ -23,7 +23,9 @@ RUN pip install "whisper==${GRAPHITE_VERSION}" \
 
 # Graphite installs into /opt somehow
 ENV GRAPHITE_ROOT "/opt/graphite"
-ENV PATH "$PATH:$GRAPHITE_ROOT/bin"
+ENV PYTHONPATH="$GRAPHITE_ROOT/lib:$GRAPHITE_ROOT/webapp" \
+    DJANGO_SETTINGS_MODULE="graphite.settings" \
+    PATH="$PATH:$GRAPHITE_ROOT/bin"
 WORKDIR $GRAPHITE_ROOT
 
 # Set up basic config
