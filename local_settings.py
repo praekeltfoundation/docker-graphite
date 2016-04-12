@@ -163,18 +163,17 @@ else:
 # The default is 'django.db.backends.sqlite3' with file 'graphite.db'
 # located in STORAGE_DIR
 #
-postgres = os.environ.get('GRAPHITE_WEB_POSTGRES_HOST')
-if postgres:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ.get('GRAPHITE_WEB_DB_NAME', 'postgres'),
-            'USER': os.environ.get('GRAPHITE_WEB_DB_USER', 'postgres'),
-            'PASSWORD': os.environ.get('GRAPHITE_WEB_DB_PASSWORD', ''),
-            'HOST': postgres,
-            'PORT': os.environ.get('GRAPHITE_WEB_POSTGRES_PORT', '')
-        }
-    }
+#DATABASES = {
+#    'default': {
+#        'NAME': '/opt/graphite/storage/graphite.db',
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'USER': '',
+#        'PASSWORD': '',
+#        'HOST': '',
+#        'PORT': ''
+#    }
+#}
+#
 
 
 #########################
