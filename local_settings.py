@@ -233,6 +233,6 @@ else:
 #####################################
 # Uncomment the following line for direct access to Django settings such as
 # MIDDLEWARE_CLASSES or APPS
-STATIC_URL = '/static/'
+STATIC_URL = '/content/'
 URL_PREFIX = ''
 #from graphite.app_settings import *
