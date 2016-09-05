@@ -3,6 +3,7 @@
 #
 # Additional customizations to Django settings can be added to this file as well
 import os
+import dj_database_url
 
 
 def Bool(value):
@@ -31,15 +32,15 @@ SECRET_KEY = os.environ.get('GRAPHITE_WEB_SECRET_KEY', 'UNSAFE_DEFAULT')
 # Set your local timezone (Django's default is America/Chicago)
 # If your graphs appear to be offset by a couple hours then this probably
 # needs to be explicitly set to your local timezone.
-#TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = os.environ.get('TIME_ZONE', 'UTC')
 
 # Override this to provide documentation specific to your Graphite deployment
 #DOCUMENTATION_URL = "http://graphite.readthedocs.org/"
 
 # Logging
-#LOG_RENDERING_PERFORMANCE = True
-#LOG_CACHE_PERFORMANCE = True
-#LOG_METRIC_ACCESS = True
+LOG_RENDERING_PERFORMANCE = Bool(os.environ.get('LOG_RENDERING_PERFORMANCE', 'true'))
+LOG_CACHE_PERFORMANCE = Bool(os.environ.get('LOG_CACHE_PERFORMANCE', 'true'))
+LOG_METRIC_ACCESS = Bool(os.environ.get('LOG_METRIC_ACCESS', 'true'))
 
 # Enable full debug page display on exceptions (Internal Server Error pages)
 #DEBUG = True
@@ -161,17 +162,8 @@ else:
 # The default is 'django.db.backends.sqlite3' with file 'graphite.db'
 # located in STORAGE_DIR
 #
-#DATABASES = {
-#    'default': {
-#        'NAME': '/opt/graphite/storage/graphite.db',
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'USER': '',
-#        'PASSWORD': '',
-#        'HOST': '',
-#        'PORT': ''
-#    }
-#}
-#
+DATABASES['default'] = dj_database_url.config(
+    default='sqlite:///opt/graphite/storage/graphite.db')
 
 
 #########################

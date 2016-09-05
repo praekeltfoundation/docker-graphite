@@ -15,7 +15,8 @@ RUN pip install cairocffi \
                 django-tagging==0.3.1 \
                 gunicorn \
                 pytz \
-                txAMQP
+                txAMQP \
+                dj-database-url
 RUN pip install "whisper==${GRAPHITE_VERSION}" \
                 "carbon==${GRAPHITE_VERSION}" \
                 "graphite-web==${GRAPHITE_VERSION}"
