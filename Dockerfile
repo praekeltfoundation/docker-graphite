@@ -4,7 +4,7 @@ MAINTAINER Praekelt Foundation <dev@praekeltfoundation.org>
 # See http://graphite.readthedocs.org/en/0.9.15/install-pip.html
 
 ENV GRAPHITE_VERSION "0.9.15"
-RUN apt-get-install.sh libcairo2
+RUN apt-get-install.sh libcairo2 libpq-dev
 # Install graphite-web dependencies
 # graphite-web as of version 0.9.15 doesn't set any `install_requires` in its
 # setup.py so we have to install these manually.
@@ -16,7 +16,9 @@ RUN pip install cairocffi \
                 gunicorn \
                 pytz \
                 txAMQP \
-                dj-database-url
+                dj-database-url \
+                psycopg2
+
 RUN pip install "whisper==${GRAPHITE_VERSION}" \
                 "carbon==${GRAPHITE_VERSION}" \
                 "graphite-web==${GRAPHITE_VERSION}"
