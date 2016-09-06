@@ -28,10 +28,13 @@ ENV PYTHONPATH="$GRAPHITE_ROOT/lib:$GRAPHITE_ROOT/webapp" \
     PATH="$PATH:$GRAPHITE_ROOT/bin"
 WORKDIR $GRAPHITE_ROOT
 
+COPY ./carbon.conf.example conf/carbon.conf.example
+COPY ./render-carbon-template.sh conf/render-carbon-template.sh
+
 # Set up basic config
 RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
-    cp conf/carbon.conf.example conf/carbon.conf && \
-    cp conf/storage-schemas.conf.example conf/storage-schemas.conf
+    cp conf/storage-schemas.conf.example conf/storage-schemas.conf && \
+    ./render-carbon-template.sh
 
 COPY ./local_settings.py /opt/graphite/webapp/graphite
 
