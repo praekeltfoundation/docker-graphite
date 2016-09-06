@@ -26,8 +26,21 @@ Two processes are managed by supervisord:
 #### Configuration
 The example configurations are used in the following places:
 * `conf/graphite.wsgi.example` -> `webapp/graphite/wsgi.py`
-* `conf/carbon.conf.example` -> `conf/carbon.conf`
 * `conf/storage-schemas.conf.example` -> `conf/storage-schemas.conf`
+
+#### AMQP Configuration
+
+Carbon can collect metrics via AMQP and can be configured to do using the following environment variables.
+
+* **ENABLE_AMQP** defaults to `False`
+* **AMQP_VERBOSE** defaults to `False`
+* **AMQP_HOST** defaults to `localhost`
+* **AMQP_PORT** defaults to `5672`
+* **AMQP_VHOST** defaults to `/`
+* **AMQP_USER** defaults to `guest`
+* **AMQP_PASSWORD** defaults to `guest`
+* **AMQP_EXCHANGE** defaults to `graphite`
+* **AMQP_METRIC_NAME_IN_BODY** defaults to `False`
 
 We added a simple `local_settings.py` based on the `webapp/graphite/local_settings.py.example` example. The `SECRET_KEY` and email settings can be set using environment variables.
 
