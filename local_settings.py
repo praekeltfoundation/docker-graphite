@@ -162,8 +162,10 @@ else:
 # The default is 'django.db.backends.sqlite3' with file 'graphite.db'
 # located in STORAGE_DIR
 #
-DATABASES['default'] = dj_database_url.config(
-    default='sqlite:///opt/graphite/storage/graphite.db')
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///opt/graphite/storage/graphite.db')
+}
 
 
 #########################
