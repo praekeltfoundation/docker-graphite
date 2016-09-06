@@ -33,8 +33,7 @@ COPY ./render-carbon-template.sh conf/render-carbon-template.sh
 
 # Set up basic config
 RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
-    cp conf/storage-schemas.conf.example conf/storage-schemas.conf && \
-    ./render-carbon-template.sh
+    cp conf/storage-schemas.conf.example conf/storage-schemas.conf
 
 COPY ./local_settings.py /opt/graphite/webapp/graphite
 
