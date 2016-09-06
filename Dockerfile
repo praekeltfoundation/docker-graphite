@@ -15,7 +15,8 @@ RUN pip install cairocffi \
                 django-tagging==0.3.1 \
                 gunicorn \
                 pytz \
-                txAMQP
+                txAMQP \
+                dj-database-url
 RUN pip install "whisper==${GRAPHITE_VERSION}" \
                 "carbon==${GRAPHITE_VERSION}" \
                 "graphite-web==${GRAPHITE_VERSION}"
@@ -27,9 +28,10 @@ ENV PYTHONPATH="$GRAPHITE_ROOT/lib:$GRAPHITE_ROOT/webapp" \
     PATH="$PATH:$GRAPHITE_ROOT/bin"
 WORKDIR $GRAPHITE_ROOT
 
+COPY ./carbon.conf.example conf/carbon.conf.example
+
 # Set up basic config
 RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
-    cp conf/carbon.conf.example conf/carbon.conf && \
     cp conf/storage-schemas.conf.example conf/storage-schemas.conf
 
 COPY ./local_settings.py /opt/graphite/webapp/graphite
