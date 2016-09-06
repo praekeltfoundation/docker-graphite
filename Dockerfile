@@ -31,6 +31,7 @@ ENV PYTHONPATH="$GRAPHITE_ROOT/lib:$GRAPHITE_ROOT/webapp" \
 WORKDIR $GRAPHITE_ROOT
 
 COPY ./carbon.conf.example conf/carbon.conf.example
+COPY ./storage-aggregation.conf conf/storage-aggregation.conf
 
 # Set up basic config
 RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
