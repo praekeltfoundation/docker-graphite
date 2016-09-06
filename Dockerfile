@@ -29,7 +29,6 @@ ENV PYTHONPATH="$GRAPHITE_ROOT/lib:$GRAPHITE_ROOT/webapp" \
 WORKDIR $GRAPHITE_ROOT
 
 COPY ./carbon.conf.example conf/carbon.conf.example
-COPY ./render-carbon-template.sh conf/render-carbon-template.sh
 
 # Set up basic config
 RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
