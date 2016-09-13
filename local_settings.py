@@ -164,7 +164,7 @@ else:
 #
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///opt/graphite/storage/graphite.db')
+        default='sqlite:////opt/graphite/storage/graphite.db')
 }
 
 
