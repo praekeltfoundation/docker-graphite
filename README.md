@@ -26,7 +26,10 @@ Two processes are managed by supervisord:
 #### Configuration
 The example configurations are used in the following places:
 * `conf/graphite.wsgi.example` -> `webapp/graphite/wsgi.py`
-* `conf/storage-schemas.conf.example` -> `conf/storage-schemas.conf`
+
+#### Storage schemas
+The retention schema that is used is 1 minute for 1 day, 5 minutes for 1 year,
+and 1 hour for 5 years.
 
 #### AMQP Configuration
 
