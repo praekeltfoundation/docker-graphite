@@ -32,10 +32,10 @@ WORKDIR $GRAPHITE_ROOT
 
 COPY ./carbon.conf.example conf/carbon.conf.example
 COPY ./storage-aggregation.conf conf/storage-aggregation.conf
+COPY ./storage-schemas.conf conf/storage-schemas.conf
 
 # Set up basic config
-RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py && \
-    cp conf/storage-schemas.conf.example conf/storage-schemas.conf
+RUN cp conf/graphite.wsgi.example webapp/graphite/wsgi.py
 
 COPY ./local_settings.py /opt/graphite/webapp/graphite
 
