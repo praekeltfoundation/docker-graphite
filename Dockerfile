@@ -29,6 +29,7 @@ ENV PYTHONPATH="$GRAPHITE_ROOT/lib:$GRAPHITE_ROOT/webapp" \
     DJANGO_SETTINGS_MODULE="graphite.settings" \
     PATH="$PATH:$GRAPHITE_ROOT/bin"
 WORKDIR $GRAPHITE_ROOT
+RUN mkdir /var/run/graphite
 
 COPY ./carbon.conf.example conf/carbon.conf.example
 COPY ./storage-aggregation.conf conf/storage-aggregation.conf
