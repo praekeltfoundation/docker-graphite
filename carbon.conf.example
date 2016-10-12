@@ -30,6 +30,9 @@
 #
 #LOCAL_DATA_DIR = /opt/graphite/storage/whisper/
 
+# Don't want pidfiles written to STORAGE_DIR as that is likely persisted
+PID_DIR = /var/run/graphite/
+
 # Specify the database library used to store metric data on disk. Currently
 # only the whisper database is supported, but ceres support is coming soon.
 DATABASE = whisper
