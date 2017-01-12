@@ -44,6 +44,7 @@ COPY ./local_settings.py /opt/graphite/webapp/graphite
 COPY ./supervisor /etc/supervisor/conf.d
 
 EXPOSE 8000
+EXPOSE 2003
 VOLUME /opt/graphite/storage
 
 COPY ./bootstrap.sh /scripts
